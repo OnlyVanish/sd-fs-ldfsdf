@@ -1,0 +1,25 @@
+[Unit]
+Description=Crow Go Update Server
+After=network.target
+
+[Service]
+Type=simple
+User=crow
+Group=crow
+WorkingDirectory=/opt/crow-server
+EnvironmentFile=/opt/crow-server/.env
+ExecStart=/opt/crow-server/crow-server
+Restart=always
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/crow-server/data
+LockPersonality=true
+MemoryDenyWriteExecute=true
+RestrictSUIDSGID=true
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+
+[Install]
+WantedBy=multi-user.target

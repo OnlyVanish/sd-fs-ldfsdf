@@ -1,0 +1,15 @@
+185.26.33.188 {
+	encode zstd gzip
+	header {
+		-Server
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+	}
+	tls {
+		issuer acme {
+			profile shortlived
+		}
+	}
+	reverse_proxy 127.0.0.1:8090 {
+	header_up X-Real-IP {remote_host}
+}
+}
